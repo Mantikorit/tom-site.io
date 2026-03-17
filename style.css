@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Tektur:wght@400..900&display=swap');
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    color: rgb(0, 0, 0);
+    font-family: 'Play', sans-serif;
+}
+
+body, html { 
+    height: 100%; 
+    background: #cccccc; 
+    color: rgb(214, 214, 214);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  
+    overflow: auto;    
+    opacity: 0;                                     
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ФОН */
+.space { 
+    position: absolute; 
+    inset: 0; 
+    pointer-events: none; 
+    overflow: hidden; 
+}
+.layer { 
+    position: absolute; 
+    inset: 0; 
+    will-change: transform; 
+}
+.content { 
+    position: relative; 
+    pointer-events: none; 
+}
+.content * { 
+    pointer-events: auto; 
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+/* ОСНОВНОЙ АДАПТИВНЫЙ ТЕКСТ */
+p {
+    /* АДАПТИВНЫЙ РАЗМЕР: 3.5rem → 20rem */
+    font-size: clamp(3.5rem, 8vw + 1rem, 20rem);
+    
+    font-family: 'Tektur', 'Impact', 'Arial Black', sans-serif;
+    font-weight: 900;
+    line-height: 1.1;
+    
+    text-align: center;
+    margin: 0 auto;
+    max-width: clamp(300px, 85vw, 1000px);
+    
+    /* НЕОНОВАЯ ПОДСВЕТКА */
+    color: #3b3b3b;
+    text-shadow:
+        /* Белое свечение */
+        0 0 10px #ffffff,
+        0 0 20px #ffffff,
+        0 0 30px #ffffff,
+        
+        /* Магента */
+        0 0 40px #797979,
+        0 0 50px #7e7e7e,
+        0 0 60px #7c7c7c,
+        
+        /* Чёрный контур */
+        0 0 70px #000000,
+        0 0 80px #000000;
+    
+    animation: neonPulse 2s ease-in-out infinite alternate;
+    transform: rotate(-1deg);
+    transition: all 0.3s ease;
+}
+
+/* ОСНОВНАЯ АНИМАЦИЯ */
+@keyframes neonPulse {
+    0% {
+        text-shadow:
+            0 0 10px #ffffff, 0 0 20px #ffffff,
+            0 0 40px #727272, 0 0 50px #777777,
+            0 0 5px #000000, 0 0 10px #000000;
+        transform: rotate(-1deg) scale(1);
+    }
+    100% {
+        text-shadow:
+            0 0 20px #ffffff, 0 0 30px #ffffff,
+            0 0 60px #797979, 0 0 70px #838383,
+            0 0 30px #000000;
+        transform: rotate(-1deg) scale(1.02);
+    }
+}
+
+/*  СМАРТФОНЫ (вертикально, до 480px) */
+@media (max-width: 480px) {
+    p {
+        font-size: clamp(2.5rem, 12vw, 8rem);
+        max-width: 95vw;
+        padding: 0 1rem;
+        transform: rotate(-0.5deg);
+        
+        /* Оптимизация производительности */
+        text-shadow:
+            0 0 5px #ffffff, 0 0 15px #ffffff,
+            0 0 20px #797979, 0 0 30px #000000;
+    }
+}
+
+/*  СМАРТФОНЫ (ландшафт) */
+@media (max-width: 480px) and (orientation: landscape) {
+    p {
+        font-size: clamp(2rem, 8vw, 6rem);
+        max-width: 98vw;
+        padding: 0 0.5rem;
+    }
+}
+
+/*  ПЛАНШЕТЫ (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    p {
+        font-size: clamp(4rem, 10vw, 12rem);
+        max-width: 90vw;
+        padding: 0 2rem;
+    }
+}
+
+/*  ДЕСКТОПЫ МАЛЫЕ (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    p {
+        font-size: clamp(6rem, 9vw, 15rem);
+        max-width: 85vw;
+    }
+}
+
+/* ДЕСКТОПЫ БОЛЬШИЕ (от 1025px) */
+@media (min-width: 1025px) {
+    p {
+        font-size: clamp(8rem, 7vw, 20rem);
+        max-width: 800px;
+    }
+}
+
+/* RETINA ЭКРАНЫ (2x+) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    p {
+        text-shadow:
+            0 0 20px #ffffff, 0 0 40px #ffffff,
+            0 0 80px #797979, 0 0 100px #000000;
+    }
+}
+
+/* HOVER ЭФФЕКТЫ ДЛЯ ДЕСКТОПА */
+@media (hover: hover) and (min-width: 769px) {
+    p:hover {
+        transform: rotate(-1deg) scale(1.05);
+        text-shadow:
+            0 0 30px #ffffff, 0 0 50px #ffffff,
+            0 0 80px #797979, 0 0 100px #969696,
+            0 0 40px #000000;
+        filter: brightness(1.1);
+    }
+}
+
+/* TOUCH РЕАКЦИИ ДЛЯ МОБИЛЬНЫХ */
+@media (hover: none) and (pointer: coarse) {
+    p:active {
+        transform: rotate(-1deg) scale(0.98);
+        filter: brightness(1.2);
+    }
+}
