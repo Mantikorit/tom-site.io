@@ -140,6 +140,12 @@ section {
     transform: scale(1.05);
 }
 
+.player:active,
+.player:focus,
+.player:focus-visible {
+    background-color: rgba(50, 50, 50, 0.7);
+    transform: scale(1.05);
+}
 
 .player img {
     height: 100%;
@@ -152,6 +158,12 @@ section {
     filter: grayscale(0)
 }
 
+.player:active img,
+.player:focus img,
+.player:focus-visible img {
+    filter: grayscale(0);
+}
+
 .player-info{
     display: flex;
     flex-direction: column;
@@ -159,6 +171,12 @@ section {
     gap: 15px;
     opacity: 0.6;            
     transition: opacity 0.3s ease; 
+}
+
+.player:active .player-info,
+.player:focus .player-info,
+.player:focus-visible .player-info {
+    opacity: 1;
 }
 
 .socials {
