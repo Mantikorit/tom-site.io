@@ -95,18 +95,19 @@ h1 a {
   width: 100%;
   padding: 16px 1px;
   text-decoration: none;
-  color: azure;
+  color: rgb(204, 204, 204);
   text-align: center;
   transition: color 0.3s, transform 0.2s;
 
-  animation: 
-    pulse 2s ease-in-out infinite,
-    glitch 4s ease-in-out infinite;
+
 }
 
 h1 a:hover {
     color: #000000;
     transform: scale(1.1); /* лёгкое увеличение */
+    animation: 
+    pulse 2s ease-in-out infinite,
+    glitch 4s ease-in-out infinite;
 }
 
 
@@ -154,6 +155,7 @@ section {
     transition: filter 0.5s , transform 0.2s ease;
 }
 
+/*
 .player:hover img {
     filter: grayscale(0)
 }
@@ -163,6 +165,7 @@ section {
 .player:focus-visible img {
     filter: grayscale(0);
 }
+*/
 
 .player-info{
     display: flex;
@@ -211,7 +214,7 @@ section {
     z-index: 1;
 }
 
-/* Изображение при наведении */
+/* Изображение при наведении 
 .youtube::after {
     content: '';
     position: absolute;
@@ -223,7 +226,7 @@ section {
     transition: opacity 0.3s ease;
     opacity: 0;
     z-index: 2;
-}
+}*/
 
 /* При наведении скрываем первый слой и показываем второй */
 .youtube:hover::before {
@@ -257,7 +260,7 @@ section {
     z-index: 1;
 }
 
-/* Изображение при наведении */
+/* Изображение при наведении 
 .twitch::after {
     content: '';
     position: absolute;
@@ -269,7 +272,7 @@ section {
     transition: opacity 0.3s ease;
     opacity: 0;
     z-index: 2;
-}
+}*/
 
 /* При наведении скрываем первый слой и показываем второй */
 .twitch:hover::before {
@@ -303,7 +306,7 @@ section {
     z-index: 1;
 }
 
-/* Изображение при наведении */
+/* Изображение при наведении 
 .tg::after {
     content: '';
     position: absolute;
@@ -315,7 +318,7 @@ section {
     transition: opacity 0.3s ease;
     opacity: 0;
     z-index: 2;
-}
+}*/
 
 /* При наведении скрываем первый слой и показываем второй */
 .tg:hover::before {
@@ -349,7 +352,7 @@ section {
     z-index: 1;
 }
 
-/* Изображение при наведении */
+/* Изображение при наведении 
 .vk::after {
     content: '';
     position: absolute;
@@ -361,7 +364,7 @@ section {
     transition: opacity 0.3s ease;
     opacity: 0;
     z-index: 2;
-}
+}*/
 
 /* При наведении скрываем первый слой и показываем второй */
 .vk:hover::before {
