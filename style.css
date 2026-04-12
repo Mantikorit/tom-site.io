@@ -375,6 +375,52 @@ section {
     background-image: url('assets/icons/vk.png');
 }
 
+.mc {
+    position: relative;          
+    width: 30px;
+    height: 30px;
+}
+
+/* Основное изображение (по умолчанию) */
+.mc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/icons/namemc.png') no-repeat center/cover;
+    transition: opacity 1s ease;
+    opacity: 1;
+    z-index: 1;
+}
+
+/* Изображение при наведении */
+.mc::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/icons/namemc0.png') no-repeat center/cover;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    z-index: 2;
+}
+
+/* При наведении скрываем первый слой и показываем второй */
+.mc:hover::before {
+    opacity: 0;
+}
+.mc:hover::after {
+    opacity: 1;
+}
+
+.mc:hover {
+    background-image: url('assets/icons/vk.png');
+}
+
 
 footer {
     text-align: center;
