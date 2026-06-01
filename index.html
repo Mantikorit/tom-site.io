@@ -1,17 +1,159 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>⏁⍜⋔</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TOM</title>
+<link rel="icon" href="assets/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: 'Odibee Sans', sans-serif;
+    }
+
+    body {
+        position: relative;
+    }
+
+    /* Canvas фон */
+    #bg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    /* Контент */
+    section {
+        position: relative;
+        z-index: 10;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .no-select {
+        -webkit-touch-callout: none;  /* iOS Safari */
+        -webkit-user-select: none;    /* Chrome/Safari/Opera */
+        -khtml-user-select: none;     /* Konqueror */
+        -moz-user-select: none;       /* Firefox */
+        -ms-user-select: none;        /* Internet Explorer/Edge */
+        user-select: none;            /* Стандартный синтаксис */
+    }
+
+
+    /* СТИЛЬ ДЛЯ ТЕКСТА */
+    .loader-text {
+      font-family: 'Odibee Sans', sans-serif;      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 800;
+      color: #fff3e6;
+      max-width: 1000px;
+      letter-spacing: 2px;
+
+       font-size: 8rem;
+       -webkit-text-stroke: 3px #381932
+    }
+
+    /* БЕСКОНЕЧНЫЕ БЕГУЩИЕ ТОЧКИ */
+    .loader-text::after {
+      content: '';
+      animation: dots 3s infinite steps(4);
+    }
+
+    @keyframes dots {
+      0%   { content: ''; }
+      25%  { content: '.'; }
+      50%  { content: '..'; }
+      75%  { content: '...'; }
+      100% { content: ''; }
+    }
+</style>
 </head>
 <body>
-    <main class="content" style="z-index: 1;">
-        <p>⏁⍜⋔ . . .</p>
-    </main>
 
-    <script src="scripts/bg_space.js" data-config="jsons/bg_defolt.json"></script>
+<canvas id="bg"></canvas>
+
+<section>
+    <div class="infinite-loader-screen">
+        <div class="no-select">
+            <h1 class="loader-text">coming soon</h1>
+        </div>
+    </div>
+</section>
+
+<script>
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+
+function render() {
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const w = canvas.width;
+    const h = canvas.height;
+
+    // Основной градиент
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+
+    grad.addColorStop(0.0, '#fff3e6');
+    grad.addColorStop(0.55, '#c09dae');
+    grad.addColorStop(1.0, '#935f86');
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    const spacing = 32;
+
+    for (let y = 0; y < h; y += spacing) {
+
+        const t = y / h;
+
+        const size =
+            1 +
+            t * (spacing - 1);
+
+        const offset = (spacing - size) / 2;
+
+        for (let x = 0; x < w; x += spacing) {
+
+            ctx.fillStyle = '#935f86';
+
+            ctx.fillRect(
+                x + offset,
+                y + offset,
+                size,
+                size
+            );
+        }
+    }
+}
+
+render();
+window.addEventListener('resize', render);
+</script>
+
 </body>
+</html>
